@@ -1,0 +1,2018 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  /* table */
+  .table {
+    border-collapse: collapse;
+    border-radius: 4px;
+    font-family: sans-serif;
+  }
+  .table-head th {
+    border: #fff solid 4px;
+    background-color: #f8f7f3;
+    padding: 10px 0;
+  }
+
+  .table-th,
+  .table-td {
+    background-color: #f8f7f3;
+    text-align: left;
+  }
+  .table-th {
+    border: solid #fff 4px;
+  }
+  .table-td {
+    vertical-align: top;
+    border: solid #fff 4px;
+  }
+  .level-row {
+    border: solid #fff 2px;
+  }
+
+  /* TABLE CONTENT */
+  .table-head-span {
+    color: #000;
+    font-weight: 1000;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    /* padding: 5px 2px; */
+  }
+
+  .table-ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    list-style-type: none !important;
+    font-size: 12px !important;
+    /* padding: 3px !important; */
+    padding-left: 11px !important;
+  }
+
+  .table-ul li::before {
+    content: "\2022";
+    color: #000;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  .table-li {
+    padding: 10px !important;
+    font-size: 13px;
+  }
+  .table-li :not(:last-child) {
+    border-bottom: solid #fff 1px !important;
+  }
+
+  .level-td {
+    vertical-align: middle;
+  }
+  .level {
+    text-align: center;
+    font-size: 18px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: solid black 2px;
+  }
+
+  /* *********************** */
+  /* OUTTER CONTENT  */
+  /* *********************** */
+  .container {
+    font-family: sans-serif;
+    padding: 5px;
+  }
+
+  .main-button {
+    width: 100%;
+    font-size: 25px;
+    display: block;
+    padding: 15px 0;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #fff;
+
+    opacity: 1;
+    transition: all 0.3s;
+    border: none;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-button span:first-child {
+    display: block;
+    width: 150px;
+    text-align: left;
+  }
+
+  .main-button span:last-child {
+    height: 30px;
+    width: 30px;
+    display: block;
+    transform: scale(1.5);
+    transition: all 0.3s;
+  }
+  /* .main-button::after {
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    opacity: 0;
+    transition: all 0.5s;
+  } */
+
+  /* HOVER STATE */
+  .main-button:hover {
+    box-shadow: 0px 3px 5px 0px #cccccc;
+    transform: translateY(-5px);
+  }
+
+  /* ACTIVE STATE */
+  .main-button.active.main-button:hover {
+    box-shadow: 0px 0px 0px 0px #cccccc;
+    transform: translateY(0);
+  }
+
+  .main-button.active span:last-child {
+    height: 30px;
+    width: 30px;
+    display: block;
+    transform: scale(1.5) rotate(90deg);
+    transition: all 0.3s;
+  }
+
+  /* .main-button.active.main-button::after {
+    opacity: 1;
+    color: #fff;
+  } */
+
+  /* MAIN CONTENT */
+  .main-content {
+    max-height: 0;
+    overflow: hidden;
+
+    transform: translateY(-15px);
+
+    border: solid 2px transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+
+    position: relative;
+    z-index: 4;
+
+    transition: all 0.3s ease-out;
+    backface-visibility: hidden;
+  }
+
+  .main-content.active {
+    padding: 20px 10px 10px 10px;
+  }
+
+  /* ********************** */
+  /* INNER CONTENT  */
+  /* ********************** */
+  /* LEVEL INNER BUTTON */
+  .main-inner-buttons {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    padding: 7px 0;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+
+    position: relative;
+    z-index: 4;
+
+    transform: translateY(0px);
+    transition: transform 0.3s ease-in;
+  }
+  .main-inner-buttons:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  /* HOVER STATE */
+  .main-inner-buttons:hover {
+    transform: translateY(-3px);
+  }
+  /* ACTIVE STATE */
+  .main-inner-buttons.active:hover {
+    transform: translateY(0px);
+  }
+  .main-inner-buttons.active {
+    transform: translateY(0px);
+    color: #fff;
+  }
+
+  .main-content-inner {
+    border: solid 2px transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: none;
+
+    position: relative;
+    z-index: 3;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+
+    backface-visibility: hidden;
+    transform: translateY(-15px);
+    background-color: #f8f7f3;
+    overflow: scroll;
+  }
+  .main-content-inner::-webkit-scrollbar {
+    width: 3px;
+    height: 5px;
+  }
+
+  /* Track */
+  .main-content-inner::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  .main-content-inner::-webkit-scrollbar-thumb {
+    background: #307508;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  .main-content-inner::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+
+  .main-content-inner.active {
+    border-top: none;
+  }
+
+  /* ADITIONAL INFORMATION ON CLICK */
+  .clickable {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .additional-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .close-additional-content {
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+  }
+
+  /* THEMES FOR LEVELS */
+  /* BEGINNER */
+  .beginner-button {
+    background-color: #8ac80b;
+  }
+  /* .beginner-button::after {
+    content: "Begginer";
+    background: #8ac80b;
+  } */
+
+  /* .beginner-button.active.beginner-button::after {
+    background-color: #8ac80b;
+    box-shadow: inset 0 0 0 2px #8ac80b;
+  } */
+  .beginner-content.active {
+    border: solid 2px #8ac80b;
+  }
+
+  .beginner-inner-buttons {
+    background-color: #8ac80b;
+  }
+  .beginner-inner-buttons.active {
+    background-color: #8ac80b;
+  }
+  .beginner-inner-buttons.active:hover {
+    background-color: #8ac80b;
+  }
+
+  .beginner-content-inner.active {
+    border: solid 2px #8ac80b;
+  }
+
+  /* THEMES FOR LEVELS */
+  /* advance */
+  .advance-button {
+    background-color: #5fac08;
+  }
+  /* .advance-button::after {
+    content: "Advance";
+    background: #5fac08;
+  }
+  .advance-button.active.advance-button::after {
+    background-color: #5fac08;
+    box-shadow: inset 0 0 0 2px #5fac08;
+  } */
+
+  .advance-content.active {
+    border: solid 2px #5fac08;
+  }
+
+  .advance-inner-buttons {
+    background-color: #5fac08;
+  }
+  .advance-inner-buttons.active {
+    background-color: #5fac08;
+  }
+  .advance-inner-buttons.active:hover {
+    background-color: #5fac08;
+  }
+
+  .advance-content-inner.active {
+    border: solid 2px #5fac08;
+  }
+
+  /* THEMES FOR LEVELS */
+  /* expert */
+  .expert-button {
+    background-color: #4e900c;
+  }
+  /* .expert-button::after {
+    content: "Expert";
+    background-color: #4e900c;
+  }
+
+  .expert-button.active.expert-button::after {
+    background-color: #4e900c;
+    box-shadow: inset 0 0 0 2px #4e900c;
+  } */
+  .expert-content.active {
+    border: solid 2px #4e900c;
+  }
+
+  .expert-inner-buttons {
+    background-color: #4e900c;
+  }
+  .expert-inner-buttons.active {
+    background-color: #4e900c;
+  }
+  .expert-inner-buttons.active:hover {
+    background-color: #4e900c;
+  }
+
+  .expert-content-inner.active {
+    border: solid 2px #4e900c;
+  }
+
+  /* THEMES FOR LEVELS */
+  /* master */
+  .master-button {
+    background-color: #307508;
+  }
+  /* .master-button::after {
+    content: "Master";
+    background: #307508;
+  }
+
+  .master-button.active.master-button::after {
+    background-color: #307508;
+    box-shadow: inset 0 0 0 2px #307508;
+  } */
+  .master-content.active {
+    border: solid 2px #307508;
+  }
+
+  .master-inner-buttons {
+    background-color: #307508;
+  }
+  .master-inner-buttons.active {
+    background-color: #307508;
+  }
+  .master-inner-buttons.active:hover {
+    background-color: #307508;
+  }
+
+  .master-content-inner.active {
+    border: solid 2px #307508;
+  }
+</style>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+  <!-- BEGGINER -->
+  <!-- BEGGINER BUTTON -->
+  <button class="main-button beginner-button">
+    <span>Begginer</span>
+    <span>&#8250;</span>
+  </button>
+
+  <!-- BEGINNER CONTENT -->
+  <div class="main-content beginner-content">
+    <!-- LEVEL 1 -->
+    <button class="main-inner-buttons beginner-inner-buttons">Level 1</button>
+    <div class="main-content-inner beginner-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- BEGGINER CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- BEGGINER CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">Begginer ტექნოლოგია;</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer პროდუქტი</li>
+
+              <li class="table-li">
+                Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer
+                პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი
+                Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer
+                პროდუქტი Begginer პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">Begginer პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                Begginer საქმიანობის კომპლექსურობა Begginer საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა Begginer საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">
+                Begginer სერტიფიცირება Begginer სერტიფიცირება Begginer
+                სერტიფიცირება Begginer სერტიფიცირება Begginer სერტიფიცირება
+                Begginer სერტიფიცირება Begginer სერტიფიცირება
+              </li>
+              <li class="table-li">Begginer სერტიფიცირება;</li>
+              <li class="table-li">Begginer სერტიფიცირება;</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer დამოუკიდებლობა;</li>
+              <li class="table-li">
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer
+                დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer
+                დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+              </li>
+              <li class="table-li">Begginer დამოუკიდებლობა</li>
+              <li class="table-li">Begginer დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- LEVEL 2 -->
+    <button class="main-inner-buttons beginner-inner-buttons">Level 2</button>
+    <div class="main-content-inner beginner-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- BEGGINER CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- BEGGINER CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+                Begginer ტექნოლოგია Begginer ტექნოლოგია Begginer ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">Begginer ტექნოლოგია;</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+              <li class="table-li">Begginer ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer პროდუქტი</li>
+
+              <li class="table-li">
+                Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer
+                პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი
+                Begginer პროდუქტი Begginer პროდუქტი Begginer პროდუქტი Begginer
+                პროდუქტი Begginer პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">Begginer პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                Begginer საქმიანობის კომპლექსურობა Begginer საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა Begginer საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">Begginer საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">
+                Begginer სერტიფიცირება Begginer სერტიფიცირება Begginer
+                სერტიფიცირება Begginer სერტიფიცირება Begginer სერტიფიცირება
+                Begginer სერტიფიცირება Begginer სერტიფიცირება
+              </li>
+              <li class="table-li">Begginer სერტიფიცირება;</li>
+              <li class="table-li">Begginer სერტიფიცირება;</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+              <li class="table-li">Begginer სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">Begginer დამოუკიდებლობა;</li>
+              <li class="table-li">
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer
+                დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer
+                დამოუკიდებლობა Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+                Begginer დამოუკიდებლობა Begginer დამოუკიდებლობა
+              </li>
+              <li class="table-li">Begginer დამოუკიდებლობა</li>
+              <li class="table-li">Begginer დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- advance -->
+  <!-- advance BUTTON -->
+  <button class="main-button advance-button">
+    <span>Advance</span>
+    <span>&#8250;</span>
+  </button>
+  <!-- advance CONTENT -->
+  <div class="main-content advance-content">
+    <!-- LEVEL 1 -->
+    <button class="main-inner-buttons advance-inner-buttons">Level 1</button>
+    <div class="main-content-inner advance-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- advance CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- advance CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">
+                advance ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">advance ტექნოლოგია;</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance პროდუქტი</li>
+
+              <li class="table-li">
+                advance პროდუქტი advance პროდუქტი advance პროდუქტი advance
+                პროდუქტი advance პროდუქტი advance პროდუქტი advance პროდუქტი
+                advance პროდუქტი advance პროდუქტი advance პროდუქტი advance
+                პროდუქტი advance პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">advance პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                advance საქმიანობის კომპლექსურობა advance საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა advance საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">
+                advance სერტიფიცირება advance სერტიფიცირება advance
+                სერტიფიცირება advance სერტიფიცირება advance სერტიფიცირება
+                advance სერტიფიცირება advance სერტიფიცირება
+              </li>
+              <li class="table-li">advance სერტიფიცირება;</li>
+              <li class="table-li">advance სერტიფიცირება;</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance დამოუკიდებლობა;</li>
+              <li class="table-li">
+                advance დამოუკიდებლობა advance დამოუკიდებლობა advance
+                დამოუკიდებლობა advance დამოუკიდებლობა advance დამოუკიდებლობა
+                advance დამოუკიდებლობა advance დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                advance დამოუკიდებლობა advance დამოუკიდებლობა advance
+                დამოუკიდებლობა advance დამოუკიდებლობა advance დამოუკიდებლობა
+                advance დამოუკიდებლობა advance დამოუკიდებლობა
+              </li>
+              <li class="table-li">advance დამოუკიდებლობა</li>
+              <li class="table-li">advance დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- LEVEL 2 -->
+    <button class="main-inner-buttons advance-inner-buttons">Level 2</button>
+    <div class="main-content-inner advance-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- advance CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- advance CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">
+                advance ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია advance
+                ტექნოლოგია advance ტექნოლოგია advance ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">advance ტექნოლოგია;</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+              <li class="table-li">advance ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance პროდუქტი</li>
+
+              <li class="table-li">
+                advance პროდუქტი advance პროდუქტი advance პროდუქტი advance
+                პროდუქტი advance პროდუქტი advance პროდუქტი advance პროდუქტი
+                advance პროდუქტი advance პროდუქტი advance პროდუქტი advance
+                პროდუქტი advance პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">advance პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                advance საქმიანობის კომპლექსურობა advance საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა advance საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">advance საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">
+                advance სერტიფიცირება advance სერტიფიცირება advance
+                სერტიფიცირება advance სერტიფიცირება advance სერტიფიცირება
+                advance სერტიფიცირება advance სერტიფიცირება
+              </li>
+              <li class="table-li">advance სერტიფიცირება;</li>
+              <li class="table-li">advance სერტიფიცირება;</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+              <li class="table-li">advance სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">advance დამოუკიდებლობა;</li>
+              <li class="table-li">
+                advance დამოუკიდებლობა advance დამოუკიდებლობა advance
+                დამოუკიდებლობა advance დამოუკიდებლობა advance დამოუკიდებლობა
+                advance დამოუკიდებლობა advance დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                advance დამოუკიდებლობა advance დამოუკიდებლობა advance
+                დამოუკიდებლობა advance დამოუკიდებლობა advance დამოუკიდებლობა
+                advance დამოუკიდებლობა advance დამოუკიდებლობა
+              </li>
+              <li class="table-li">advance დამოუკიდებლობა</li>
+              <li class="table-li">advance დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- expert -->
+  <!-- expert BUTTON -->
+  <button class="main-button expert-button">
+    <span>Expert</span>
+    <span>&#8250;</span>
+  </button>
+
+  <!-- expert CONTENT -->
+  <div class="main-content expert-content">
+    <!-- LEVEL 1 -->
+    <button class="main-inner-buttons expert-inner-buttons">Level 1</button>
+    <div class="main-content-inner expert-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- expert CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- expert CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">
+                expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert
+                ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია
+                expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert
+                ტექნოლოგია expert ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">expert ტექნოლოგია;</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert პროდუქტი</li>
+
+              <li class="table-li">
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">expert პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                expert საქმიანობის კომპლექსურობა expert საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა expert საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">
+                expert სერტიფიცირება expert სერტიფიცირება expert სერტიფიცირება
+                expert სერტიფიცირება expert სერტიფიცირება expert სერტიფიცირება
+                expert სერტიფიცირება
+              </li>
+              <li class="table-li">expert სერტიფიცირება;</li>
+              <li class="table-li">expert სერტიფიცირება;</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert დამოუკიდებლობა;</li>
+              <li class="table-li">
+                expert დამოუკიდებლობა expert დამოუკიდებლობა expert
+                დამოუკიდებლობა expert დამოუკიდებლობა expert დამოუკიდებლობა
+                expert დამოუკიდებლობა expert დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                expert დამოუკიდებლობა expert დამოუკიდებლობა expert
+                დამოუკიდებლობა expert დამოუკიდებლობა expert დამოუკიდებლობა
+                expert დამოუკიდებლობა expert დამოუკიდებლობა
+              </li>
+              <li class="table-li">expert დამოუკიდებლობა</li>
+              <li class="table-li">expert დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- LEVEL 2 -->
+    <button class="main-inner-buttons expert-inner-buttons">Level 2</button>
+    <div class="main-content-inner expert-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- expert CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- expert CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">
+                expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert
+                ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია
+                expert ტექნოლოგია expert ტექნოლოგია expert ტექნოლოგია expert
+                ტექნოლოგია expert ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">expert ტექნოლოგია;</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+              <li class="table-li">expert ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert პროდუქტი</li>
+
+              <li class="table-li">
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+                expert პროდუქტი expert პროდუქტი expert პროდუქტი expert პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">expert პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                expert საქმიანობის კომპლექსურობა expert საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა expert საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">expert საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">
+                expert სერტიფიცირება expert სერტიფიცირება expert სერტიფიცირება
+                expert სერტიფიცირება expert სერტიფიცირება expert სერტიფიცირება
+                expert სერტიფიცირება
+              </li>
+              <li class="table-li">expert სერტიფიცირება;</li>
+              <li class="table-li">expert სერტიფიცირება;</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+              <li class="table-li">expert სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">expert დამოუკიდებლობა;</li>
+              <li class="table-li">
+                expert დამოუკიდებლობა expert დამოუკიდებლობა expert
+                დამოუკიდებლობა expert დამოუკიდებლობა expert დამოუკიდებლობა
+                expert დამოუკიდებლობა expert დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                expert დამოუკიდებლობა expert დამოუკიდებლობა expert
+                დამოუკიდებლობა expert დამოუკიდებლობა expert დამოუკიდებლობა
+                expert დამოუკიდებლობა expert დამოუკიდებლობა
+              </li>
+              <li class="table-li">expert დამოუკიდებლობა</li>
+              <li class="table-li">expert დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- master -->
+  <!-- master BUTTON -->
+  <button class="main-button master-button">
+    <span>Master</span>
+    <span>&#8250;</span>
+  </button>
+
+  <!-- master CONTENT -->
+  <div class="main-content master-content">
+    <!-- LEVEL 1 -->
+    <button class="main-inner-buttons master-inner-buttons">Level 1</button>
+    <div class="main-content-inner master-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- master CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- master CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">
+                master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master
+                ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია
+                master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master
+                ტექნოლოგია master ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">master ტექნოლოგია;</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master პროდუქტი</li>
+
+              <li class="table-li">
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">master პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                master საქმიანობის კომპლექსურობა master საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა master საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">
+                master სერტიფიცირება master სერტიფიცირება master სერტიფიცირება
+                master სერტიფიცირება master სერტიფიცირება master სერტიფიცირება
+                master სერტიფიცირება
+              </li>
+              <li class="table-li">master სერტიფიცირება;</li>
+              <li class="table-li">master სერტიფიცირება;</li>
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">master სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master დამოუკიდებლობა;</li>
+              <li class="table-li">
+                master დამოუკიდებლობა master დამოუკიდებლობა master
+                დამოუკიდებლობა master დამოუკიდებლობა master დამოუკიდებლობა
+                master დამოუკიდებლობა master დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                master დამოუკიდებლობა master დამოუკიდებლობა master
+                დამოუკიდებლობა master დამოუკიდებლობა master დამოუკიდებლობა
+                master დამოუკიდებლობა master დამოუკიდებლობა
+              </li>
+              <li class="table-li">master დამოუკიდებლობა</li>
+              <li class="table-li">master დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- LEVEL 2 -->
+    <button class="main-inner-buttons master-inner-buttons">Level 2</button>
+    <div class="main-content-inner master-content-inner">
+      <table style="width: 100%" class="table">
+        <!-- master CONTENT HEAD -->
+        <thead class="table-head">
+          <tr class="table-tr">
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> ტექნოლოგია/Technology </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> პროდუქტი/Product </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span">
+                საქმიანობის კომპლექსურობა/Job Complexity
+              </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> სერტიფიცირება/Certificates </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> დამოუკიდებლობა/Independency </span>
+            </th>
+            <th style="background-color: #f8f7f3; border: #fff solid 4px">
+              <span class="table-head-span"> რბილი უნარები/Soft Skills </span>
+            </th>
+          </tr>
+        </thead>
+        <!-- master CONTENT LEVEL 1 -->
+        <tr class="level-row">
+          <!-- ტექნოლოგია -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">
+                master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master
+                ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია
+                master ტექნოლოგია master ტექნოლოგია master ტექნოლოგია master
+                ტექნოლოგია master ტექნოლოგია
+              </li>
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional1"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">master ტექნოლოგია;</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+              <li class="table-li">master ტექნოლოგია</li>
+            </ul>
+          </td>
+
+          <!-- პროდუქტი -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master პროდუქტი</li>
+
+              <li class="table-li">
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+                master პროდუქტი master პროდუქტი master პროდუქტი master პროდუქტი
+              </li>
+
+              <li class="table-li">
+                <span
+                  class="show-additional clickable"
+                  data-target="additional2"
+                  >Show Additional Content</span
+                >
+              </li>
+              <li class="table-li">master პროდუქტი</li>
+            </ul>
+          </td>
+
+          <!-- საქმიანობის კომპლექსურობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">
+                master საქმიანობის კომპლექსურობა master საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა master საქმიანობის
+                კომპლექსურობა საქმიანობის კომპლექსურობა
+              </li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა;</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+              <li class="table-li">master საქმიანობის კომპლექსურობა</li>
+            </ul>
+          </td>
+
+          <!-- სერტიფიცირება  -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">
+                master სერტიფიცირება master სერტიფიცირება master სერტიფიცირება
+                master სერტიფიცირება master სერტიფიცირება master სერტიფიცირება
+                master სერტიფიცირება
+              </li>
+              <li class="table-li">master სერტიფიცირება;</li>
+              <li class="table-li">master სერტიფიცირება;</li>
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">master სერტიფიცირება</li>
+              <li class="table-li">master სერტიფიცირება</li>
+            </ul>
+          </td>
+
+          <!-- დამოუკიდებლობა -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">master დამოუკიდებლობა;</li>
+              <li class="table-li">
+                master დამოუკიდებლობა master დამოუკიდებლობა master
+                დამოუკიდებლობა master დამოუკიდებლობა master დამოუკიდებლობა
+                master დამოუკიდებლობა master დამოუკიდებლობა
+              </li>
+              <li class="table-li">
+                master დამოუკიდებლობა master დამოუკიდებლობა master
+                დამოუკიდებლობა master დამოუკიდებლობა master დამოუკიდებლობა
+                master დამოუკიდებლობა master დამოუკიდებლობა
+              </li>
+              <li class="table-li">master დამოუკიდებლობა</li>
+              <li class="table-li">master დამოუკიდებლობა</li>
+            </ul>
+          </td>
+
+          <!-- რბილი უნარები -->
+          <td class="table-td">
+            <ul class="table-ul">
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">
+                რბილი უნარები რბილი უნარები რბილი უნარები რბილი უნარები რბილი
+                უნარები რბილი უნარები რბილი უნარები
+              </li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+              <li class="table-li">რბილის უნრები</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADDITIONAL OPTIONAL TEXT CONTENT APPEARING ON CLICK ON A LIST -->
+  <!-- OVERLAY FOR ADDITIONAL TEXT -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="additional-content" id="additional1">
+    <div class="close-additional-content">&#10005;</div>
+    <h2>This is additional content 1</h2>
+    <p>You can read it .</p>
+    <p>by clicking on the overlay you can close window.</p>
+  </div>
+
+  <div class="additional-content" id="additional2">
+    <div class="close-additional-content">&#10005;</div>
+    <h2>This is additional content 2</h2>
+    <p>You can read it .</p>
+    <p>by clicking on the overlay you can close window.</p>
+  </div>
+
+  <script>
+    // SHARED
+    // SHARED
+    // SHARED
+    // FOR SHOWING ADDITIONAL TEXT
+    const showAdditionalButtons = document.querySelectorAll(".show-additional");
+    const overlay = document.getElementById("overlay");
+    const additionalContents = document.querySelectorAll(".additional-content");
+    const additionalCloseBtn = document.querySelectorAll(
+      ".close-additional-content"
+    );
+
+    // SHOW ADDITIONAL TEXT
+    showAdditionalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.getAttribute("data-target");
+        const additionalContent = document.getElementById(targetId);
+
+        if (additionalContent) {
+          additionalContent.style.display = "block";
+          overlay.style.display = "block";
+        }
+      });
+    });
+
+    // CLOSE OVERLAY
+    overlay.addEventListener("click", () => {
+      additionalContents.forEach((content) => {
+        content.style.display = "none";
+      });
+      overlay.style.display = "none";
+    });
+
+    additionalCloseBtn.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        overlay.style.display = "none";
+        btn.parentNode.style.display = "none";
+      });
+    });
+
+    // BEGINNER
+    // BEGINNER
+    // BEGINNER
+    // main button
+    const beginnerButton = document.querySelector(".beginner-button");
+    // main content
+    const beginnerContent = document.querySelector(".beginner-content");
+    // inner buttons
+    const beginnerInnerButtons = document.querySelectorAll(
+      ".beginner-inner-buttons"
+    );
+    const beginnerInnerContent = document.querySelectorAll(
+      ".beginner-content-inner"
+    );
+
+    // for main button
+    beginnerButton.addEventListener("click", function () {
+      // toggling active class on button
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+
+      // changing height accordingly
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.classList.remove("active");
+
+        // resetting inner buttons and content
+        beginnerInnerButtons.forEach((button) => {
+          button.classList.remove("active");
+          const innerContent = button.nextElementSibling;
+          innerContent.style.maxHeight = null;
+          innerContent.classList.remove("active");
+        });
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("active");
+      }
+    });
+
+    // for inner buttons
+    beginnerInnerButtons.forEach((button) => {
+      // click event on every button
+      button.addEventListener("click", function () {
+        // toggle ctive class on button
+        this.classList.toggle("active");
+        const content = button.nextElementSibling;
+
+        // change height accordingly
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          content.classList.remove("active");
+        } else {
+          content.style.maxHeight = content.scrollHeight + 50 + "px";
+          content.classList.add("active");
+
+          // adding height of the opened inner content to outter container
+          beginnerContent.style.maxHeight =
+            beginnerContent.scrollHeight + content.scrollHeight + 50 + "px";
+        }
+      });
+    });
+
+    // ADVANCE
+    // ADVANCE
+    // ADVANCE
+    // main button
+    const advanceButton = document.querySelector(".advance-button");
+    // main content
+    const advanceContent = document.querySelector(".advance-content");
+    // inner buttons
+    const advanceInnerButtons = document.querySelectorAll(
+      ".advance-inner-buttons"
+    );
+    const advanceInnerContent = document.querySelectorAll(
+      ".advance-content-inner"
+    );
+
+    // for main button
+    advanceButton.addEventListener("click", function () {
+      // toggling active class on button
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+
+      // changing height accordingly
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.classList.remove("active");
+
+        // resetting inner buttons and content
+        advanceInnerButtons.forEach((button) => {
+          button.classList.remove("active");
+          const innerContent = button.nextElementSibling;
+          innerContent.style.maxHeight = null;
+          innerContent.classList.remove("active");
+        });
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("active");
+      }
+    });
+
+    // for inner buttons
+    advanceInnerButtons.forEach((button) => {
+      // click event on every button
+      button.addEventListener("click", function () {
+        // toggle ctive class on button
+        this.classList.toggle("active");
+        const content = button.nextElementSibling;
+
+        // change height accordingly
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          content.classList.remove("active");
+        } else {
+          content.style.maxHeight = content.scrollHeight + 50 + "px";
+          content.classList.add("active");
+
+          // adding height of the opened inner content to outter container
+          advanceContent.style.maxHeight =
+            advanceContent.scrollHeight + content.scrollHeight + 50 + "px";
+        }
+      });
+    });
+
+    // EXPERT
+    // EXPERT
+    // EXPERT
+    // main button
+    const expertButton = document.querySelector(".expert-button");
+    // main content
+    const expertContent = document.querySelector(".expert-content");
+    // inner buttons
+    const expertInnerButtons = document.querySelectorAll(
+      ".expert-inner-buttons"
+    );
+    const expertInnerContent = document.querySelectorAll(
+      ".expert-content-inner"
+    );
+
+    // for main button
+    expertButton.addEventListener("click", function () {
+      // toggling active class on button
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+
+      // changing height accordingly
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.classList.remove("active");
+
+        // resetting inner buttons and content
+        expertInnerButtons.forEach((button) => {
+          button.classList.remove("active");
+          const innerContent = button.nextElementSibling;
+          innerContent.style.maxHeight = null;
+          innerContent.classList.remove("active");
+        });
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("active");
+      }
+    });
+
+    // for inner buttons
+    expertInnerButtons.forEach((button) => {
+      // click event on every button
+      button.addEventListener("click", function () {
+        // toggle ctive class on button
+        this.classList.toggle("active");
+        const content = button.nextElementSibling;
+
+        // change height accordingly
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          content.classList.remove("active");
+        } else {
+          content.style.maxHeight = content.scrollHeight + 50 + "px";
+          content.classList.add("active");
+
+          // adding height of the opened inner content to outter container
+          expertContent.style.maxHeight =
+            expertContent.scrollHeight + content.scrollHeight + 50 + "px";
+        }
+      });
+    });
+
+    // MASTER
+    // MASTER
+    // MASTER
+    // main button
+    const masterButton = document.querySelector(".master-button");
+    // main content
+    const masterContent = document.querySelector(".master-content");
+    // inner buttons
+    const masterInnerButtons = document.querySelectorAll(
+      ".master-inner-buttons"
+    );
+    const masterInnerContent = document.querySelectorAll(
+      ".master-content-inner"
+    );
+
+    // for main button
+    masterButton.addEventListener("click", function () {
+      // toggling active class on button
+      this.classList.toggle("active");
+      const content = this.nextElementSibling;
+
+      // changing height accordingly
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.classList.remove("active");
+
+        // resetting inner buttons and content
+        masterInnerButtons.forEach((button) => {
+          button.classList.remove("active");
+          const innerContent = button.nextElementSibling;
+          innerContent.style.maxHeight = null;
+          innerContent.classList.remove("active");
+        });
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add("active");
+      }
+    });
+
+    // for inner buttons
+    masterInnerButtons.forEach((button) => {
+      // click event on every button
+      button.addEventListener("click", function () {
+        // toggle ctive class on button
+        this.classList.toggle("active");
+        const content = button.nextElementSibling;
+
+        // change height accordingly
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          content.classList.remove("active");
+        } else {
+          content.style.maxHeight = content.scrollHeight + 50 + "px";
+          content.classList.add("active");
+
+          // adding height of the opened inner content to outter container
+          masterContent.style.maxHeight =
+            masterContent.scrollHeight + content.scrollHeight + 50 + "px";
+        }
+      });
+    });
+  </script>
+</div>
